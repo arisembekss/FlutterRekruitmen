@@ -22,7 +22,6 @@ String cleanData(List data) {
     result = result.replaceAll('Provinsi,', 'Provinsi -');
   }
 
-  print(tempList.length);
   return result;
 }
 

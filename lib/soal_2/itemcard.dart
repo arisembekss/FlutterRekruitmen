@@ -1,9 +1,11 @@
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ItemCard extends StatelessWidget {
   const ItemCard({Key? key, required this.note, required this.date, required this.color}) : super(key: key);
-  final String note, date;
+  final String note/*, date*/;
+  final DateTime date;
   final Color color;
 
   @override
@@ -44,7 +46,8 @@ class ItemCard extends StatelessWidget {
 
 class ItemDescription extends StatelessWidget {
   const ItemDescription({Key? key, required this.title, required this.subtitle}) : super(key: key);
-  final String title, subtitle;
+  final String title/*, subtitle*/;
+  final DateTime subtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +66,7 @@ class ItemDescription extends StatelessWidget {
           SizedBox(height: 20,),
           Align(
             alignment: Alignment.bottomRight,
-            child: Text(subtitle),
+            child: Text(DateFormat("dd-MM-yyyy").format(DateTime.parse(subtitle.toIso8601String()))),
           ),
         ],
       ),
