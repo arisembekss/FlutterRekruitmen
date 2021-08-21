@@ -2,12 +2,14 @@
 import 'package:flutter/material.dart';
 
 class ItemListCard extends StatelessWidget {
-  const ItemListCard({Key? key, required this.employee, required this.address}) : super(key: key);
+  const ItemListCard({Key? key, required this.employee, required this.address, required this.color}) : super(key: key);
   final String employee, address;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: color,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 5.0),
         child: Row(
@@ -48,8 +50,8 @@ class ItemDescription extends StatelessWidget {
         children: [
           Text("Nama",
           style: TextStyle(
-            fontSize: 20,
-            color: Colors.grey
+            fontSize: 15,
+            color: Colors.white60
           ),),
           Text(employee,
             style: TextStyle(
@@ -58,8 +60,8 @@ class ItemDescription extends StatelessWidget {
           ),
           Text("Alamat",
             style: TextStyle(
-                fontSize: 20,
-                color: Colors.grey),),
+                fontSize: 15,
+                color: Colors.white60),),
           Text(address,
             style: TextStyle(
               fontSize: 20,

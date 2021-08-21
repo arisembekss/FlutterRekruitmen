@@ -3,6 +3,7 @@
 //     final response = responseFromJson(jsonString);
 
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:rekrutmen/soal_3/itemlistcard.dart';
@@ -30,6 +31,8 @@ class MyWidget extends StatefulWidget {
 
 class _MyWidget extends State<MyWidget>{
   late List<Result> datas;
+  List<Color> colors = <Color>[Colors.blue, Colors.blueAccent,Colors.lightBlue];
+
   @override
   void initState() {
     super.initState();
@@ -52,17 +55,22 @@ class _MyWidget extends State<MyWidget>{
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Scroll soal 3"),
+            Text(
+              "Scroll",
+              style: TextStyle(fontSize: 50),
+            ),
             Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ListView.builder(
-                      itemBuilder: (context, index){
-                        return ItemListCard(
-                          employee: datas[index].employee as String,
-                          address: datas[index].address as String,
-                        );
-                      }
+                    itemCount: datas.length,
+                    itemBuilder: (context, index){
+                      return ItemListCard(
+                        employee: datas[index].employee as String,
+                        address: datas[index].address as String,
+                        color: colors[Random().nextInt(colors.length)],
+                      );
+                    }
                   ),
                 )
             )

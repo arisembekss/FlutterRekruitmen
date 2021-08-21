@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,7 @@ class MyWidget extends StatefulWidget {
 
 class _MyWidgetState extends State<MyWidget> {
   List<Resultdata>? datas;
-
+  List<Color> colors = <Color>[Colors.purple, Colors.purpleAccent,Colors.pink];
   @override
   void initState() {
     super.initState();
@@ -58,13 +59,14 @@ class _MyWidgetState extends State<MyWidget> {
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0),
+                padding: const EdgeInsets.all(8.0),
                 child: ListView.builder(
                     itemCount: datas!.length,
                     itemBuilder: (context, index) {
                       return ItemCard(
-                        note: datas![index].employee as String,
-                        date: datas![index].checkStatus as String,
+                        note: datas![index].checkStatus as String,
+                        date: datas![index].checktime as String,
+                        color: colors[Random().nextInt(colors.length)],
                       );
                     }),
               ),

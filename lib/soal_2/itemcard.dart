@@ -2,12 +2,14 @@
 import 'package:flutter/material.dart';
 
 class ItemCard extends StatelessWidget {
-  const ItemCard({Key? key, required this.note, required this.date}) : super(key: key);
+  const ItemCard({Key? key, required this.note, required this.date, required this.color}) : super(key: key);
   final String note, date;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: color,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
@@ -51,7 +53,14 @@ class ItemDescription extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title),
+          Text(
+              "Clock " + title,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 20,),
           Align(
             alignment: Alignment.bottomRight,
             child: Text(subtitle),
