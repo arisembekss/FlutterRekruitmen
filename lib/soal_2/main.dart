@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
+import 'itemcard.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -24,7 +26,6 @@ class MyWidget extends StatefulWidget {
 
 class _MyWidgetState extends State<MyWidget> {
   List<Resultdata>? datas;
-  late List<String> items;
 
   @override
   void initState() {
@@ -35,7 +36,6 @@ class _MyWidgetState extends State<MyWidget> {
     final jsonMap = jsonDecode(json);
     final response = Response.fromJson(jsonMap as Map<String, dynamic>);
     datas = response.resultdata;
-    items = List<String>.generate(5, (i) => 'Item $i');
   }
 
   @override
@@ -48,10 +48,6 @@ class _MyWidgetState extends State<MyWidget> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        // decoration: BoxDecoration(
-        //   color: Colors.blue,
-        //   border: Border.all(),
-        // ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,63 +76,6 @@ class _MyWidgetState extends State<MyWidget> {
   }
 }
 
-class ItemCard extends StatelessWidget {
-  const ItemCard({Key? key, required this.note, required this.date}) : super(key: key);
-  final String note, date;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5.0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              //flex: 2,
-              child: Container(
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                    color: Colors.blue,
-                    border: Border.all(),
-
-                  ),
-              ),
-            ),
-            SizedBox(width: 20,),
-            Expanded(
-                flex: 3,
-                child: ItemDescription(
-                  title: note,
-                  subtitle: date,
-                )
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ItemDescription extends StatelessWidget {
-  const ItemDescription({Key? key, required this.title, required this.subtitle}) : super(key: key);
-  final String title, subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title),
-          Text(subtitle)
-        ],
-      ),
-    );
-  }
-}
 
 class Response {
   String? codestatus;
